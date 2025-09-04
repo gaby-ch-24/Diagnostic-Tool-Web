@@ -38,7 +38,8 @@ export default function LoginPage() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       setSuccess("User logged in successfully!");
-      setTimeout(() => router.push("/"), 1200);
+      const redirectPath = data.user.role === "Admin" ? "/admin" : "/";
+      setTimeout(() => router.push(redirectPath), 1200);
     } else {
       setError(data.error || "Login failed");
     }

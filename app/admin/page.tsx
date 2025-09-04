@@ -58,7 +58,7 @@ function AdminPage() {
       setLoading(false);
       return;
     }
-    fetch(`${API}/users`, {
+    fetch(`${API}/auth/users`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
@@ -92,7 +92,7 @@ function AdminPage() {
     setEditError("");
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
-    const res = await fetch(`${API}/users/${editUser.id}`, {
+    const res = await fetch(`${API}/auth/users/${editUser.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +119,7 @@ function AdminPage() {
     if (!deleteUserId) return;
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
-    const res = await fetch(`${API}/users/${deleteUserId}`, {
+    const res = await fetch(`${API}/auth/users/${deleteUserId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
